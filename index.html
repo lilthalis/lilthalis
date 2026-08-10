@@ -3,34 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIL THALIS — Official Website</title>
+    <title>LIL THALIS — Official Cinematic Website</title>
     
-    <!-- High Fashion & Luxury Typography from Google Fonts -->
+    <!-- Apple-style Modern Sans & Serif Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=Noto+Serif+JP:wght@200;400;700&family=Syne:wght@400;700;800&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         /* ==========================================================================
-           1. CORE STYLING & LUXURY THEME VARIABLES
+           1. CORE SYSTEM & APPLE-INSPIRED DARK LUXURY VARIABLES
            ========================================================================== */
         :root {
-            --pure-black: #000000;
-            --dark-surface: #08070b;
-            --surface-card: #0d0b12;
-            --purple-deep: #160424;
-            --purple-glow: rgba(139, 92, 246, 0.25);
-            --purple-neon: #9333ea;
-            --gold-aged: #b8973d;
-            --gold-light: #d4af37;
-            --gold-subtle: rgba(212, 175, 55, 0.2);
-            --text-main: #f3f4f6;
-            --text-muted: #6b7280;
-            --font-display: 'Syne', sans-serif;
-            --font-editorial: 'Bodoni Moda', serif;
-            --font-jp: 'Noto Serif JP', serif;
-            --font-sans: 'Inter', sans-serif;
-            --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --bg-black: #000000;
+            --surface-glass: rgba(18, 18, 22, 0.65);
+            --surface-glass-border: rgba(255, 255, 255, 0.08);
+            --gold-aged: #c5a059;
+            --gold-glow: rgba(197, 160, 89, 0.3);
+            --purple-deep: #160326;
+            --purple-glow: rgba(147, 51, 234, 0.25);
+            --text-white: #f5f5f7;
+            --text-secondary: #86868b;
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --radius-apple: 22px;
+            --transition-apple: all 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
         }
 
         * {
@@ -41,914 +38,567 @@
         }
 
         body {
-            background-color: var(--pure-black);
-            color: var(--text-main);
-            font-family: var(--font-sans);
+            background-color: var(--bg-black);
+            color: var(--text-white);
+            font-family: var(--font-main);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            selection-background-color: var(--purple-neon);
-            selection-color: #fff;
         }
 
-        /* 35mm Film Grain Overlay Effect (Inspired by The Weeknd aesthetic) */
+        /* Granulação de Cinema 35mm */
         .film-grain {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            inset: 0;
             pointer-events: none;
-            z-index: 999;
-            opacity: 0.04;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            z-index: 99;
+            opacity: 0.035;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
-        /* Ambient Glow Effect */
-        .ambient-glow {
+        /* Canvas de Neblina / Fog de AOT ao fundo */
+        #fog-canvas {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80vw;
-            height: 80vh;
-            background: radial-gradient(circle, rgba(76, 29, 149, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
-            pointer-events: none;
+            inset: 0;
             z-index: 0;
+            pointer-events: none;
         }
 
         /* ==========================================================================
-           2. NAVIGATION BAR
+           2. HEADER ESTILO APPLE (MINIMALISTA E TRANSLÚCIDO)
            ========================================================================== */
         header {
             position: fixed;
-            top: 0;
-            width: 100%;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1100px;
             z-index: 100;
-            padding: 30px 60px;
+            padding: 14px 28px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 100%);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            background: rgba(10, 10, 12, 0.7);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid var(--surface-glass-border);
+            border-radius: 40px;
         }
 
         .brand-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .brand-title {
-            font-family: var(--font-display);
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: 6px;
-            color: #fff;
-            text-transform: uppercase;
-        }
-
-        .brand-kanji {
-            font-family: var(--font-jp);
-            font-size: 0.75rem;
-            color: var(--gold-aged);
+            font-size: 0.95rem;
+            font-weight: 700;
             letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-white);
+            text-decoration: none;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 45px;
+            gap: 30px;
         }
 
         nav a {
-            color: var(--text-muted);
+            color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.75rem;
             font-weight: 500;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            transition: var(--transition-smooth);
+            letter-spacing: 1px;
+            transition: var(--transition-apple);
         }
 
-        nav a:hover, nav a.active {
-            color: #fff;
-            text-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+        nav a:hover {
+            color: var(--text-white);
         }
 
         /* ==========================================================================
-           3. HERO SECTION (FULL SCREEN CINEMATIC HOMEPAGE)
+           3. HERO CINEMATOGRÁFICO (MURALHAS NA NEBLINA + LUZ VOLUMÉTRICA)
            ========================================================================== */
         .hero {
             position: relative;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            align-items: flex-end;
-            justify-content: flex-start;
-            padding: 0 8% 100px;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .hero-bg-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .hero-bg-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center 20%;
-            filter: brightness(65%) contrast(115%) saturate(85%);
-            transform: scale(1.03);
-            animation: subtleZoom 20s infinite alternate ease-in-out;
-        }
-
-        @keyframes subtleZoom {
-            from { transform: scale(1.0); }
-            to { transform: scale(1.06); }
-        }
-
-        .hero-vignette {
-            position: absolute;
-            inset: 0;
-            background: 
-                radial-gradient(circle at 50% 40%, transparent 20%, rgba(0, 0, 0, 0.85) 90%),
-                linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.95) 100%);
-        }
-
-        .hero-purple-lighting {
-            position: absolute;
-            bottom: 10%;
-            right: 15%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(147, 51, 234, 0.35) 0%, transparent 70%);
-            mix-blend-mode: screen;
-            pointer-events: none;
-            filter: blur(50px);
-        }
-
-        .hero-content {
-            max-width: 900px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-subtag {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.7rem;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: var(--gold-aged);
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .hero-subtag::before {
-            content: '';
-            width: 25px;
-            height: 1px;
-            background: var(--gold-aged);
-        }
-
-        .hero-main-title {
-            font-family: var(--font-display);
-            font-size: 5.5rem;
-            font-weight: 800;
-            line-height: 0.95;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: #fff;
-            margin-bottom: 25px;
-            text-shadow: 0 0 50px rgba(0,0,0,0.9);
-        }
-
-        .hero-main-title span {
-            font-family: var(--font-editorial);
-            font-style: italic;
-            font-weight: 400;
-            background: linear-gradient(135deg, #ffffff 0%, var(--gold-light) 50%, #888 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
-        }
-
-        .hero-action-bar {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            margin-top: 35px;
-        }
-
-        .btn-luxury {
-            padding: 18px 42px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: #000;
-            background: #fff;
-            border: 1px solid #fff;
-            transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-luxury:hover {
-            background: var(--gold-light);
-            border-color: var(--gold-light);
-            box-shadow: 0 0 35px rgba(212, 175, 55, 0.4);
-            transform: translateY(-3px);
-        }
-
-        .btn-outline {
-            padding: 18px 42px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: #fff;
-            background: rgba(0,0,0,0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            transition: var(--transition-smooth);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--purple-neon);
-            box-shadow: 0 0 30px rgba(147, 51, 234, 0.3);
-            color: #fff;
-            transform: translateY(-3px);
-        }
-
-        /* ==========================================================================
-           4. SECTIONS LAYOUT & TYPOGRAPHY
-           ========================================================================== */
-        section {
-            padding: 140px 8%;
-            position: relative;
-            z-index: 2;
-            background: var(--pure-black);
-        }
-
-        .section-header {
-            margin-bottom: 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .section-kanji {
-            font-family: var(--font-jp);
-            font-size: 0.85rem;
-            color: var(--purple-neon);
-            letter-spacing: 6px;
-            margin-bottom: 10px;
-        }
-
-        .section-title {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            font-weight: 800;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: #fff;
-        }
-
-        /* ==========================================================================
-           5. MUSIC / DISCOGRAPHY (DARK VINYL & TRACKLIST)
-           ========================================================================== */
-        .music-showcase {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 70px;
-            align-items: center;
-        }
-
-        .album-cover-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            aspect-ratio: 1/1;
-            margin: 0 auto;
-        }
-
-        .album-cover-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            filter: contrast(110%);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Ambient Vinyl Disc Behind Album */
-        .vinyl-disc {
-            position: absolute;
-            top: 0;
-            right: -20%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, #111 30%, #000 70%);
-            border-radius: 50%;
-            border: 1px solid rgba(255,255,255,0.05);
-            z-index: 1;
-            transition: var(--transition-smooth);
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            text-align: center;
+            padding: 140px 20px 80px;
+            z-index: 1;
         }
 
-        .vinyl-disc::after {
-            content: '';
-            width: 35%;
-            height: 35%;
-            background: var(--purple-deep);
-            border: 1px solid var(--gold-aged);
-            border-radius: 50%;
+        .hero-background-art {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 50% 30%, rgba(147, 51, 234, 0.18) 0%, transparent 60%),
+                linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.9) 90%, #000 100%),
+                url('https://images.unsplash.com/photo-1509114397022-ed747cca3f65?auto=format&fit=crop&q=80&w=2000') center/cover;
+            filter: brightness(55%) contrast(120%) grayscale(20%);
         }
 
-        .album-cover-container:hover .vinyl-disc {
-            right: -35%;
-            transform: rotate(90deg);
+        .hero-content {
+            max-width: 850px;
         }
 
-        .tracklist {
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.68rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-aged);
+            background: rgba(197, 160, 89, 0.08);
+            border: 1px solid rgba(197, 160, 89, 0.25);
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: 5.5rem;
+            font-weight: 400;
+            line-height: 1.02;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+            color: var(--text-white);
+        }
+
+        .hero-title i {
+            font-style: italic;
+            background: linear-gradient(135deg, #ffffff 0%, var(--gold-aged) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .hero-cta-group {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .track-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 25px;
-            background: var(--dark-surface);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            transition: var(--transition-smooth);
-            cursor: pointer;
-        }
-
-        .track-item:hover, .track-item.active {
-            border-color: var(--gold-aged);
-            background: var(--surface-card);
-            transform: translateX(10px);
-            box-shadow: 0 0 25px rgba(147, 51, 234, 0.15);
-        }
-
-        .track-meta {
-            display: flex;
-            align-items: center;
+            justify-content: center;
             gap: 20px;
         }
 
-        .track-num {
-            font-family: var(--font-editorial);
-            font-size: 1.1rem;
-            color: var(--gold-aged);
-            width: 30px;
-        }
-
-        .track-name {
-            font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            color: #fff;
-        }
-
-        .track-duration {
+        .btn-apple {
+            padding: 16px 36px;
             font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* ==========================================================================
-           6. EDITORIAL LOOKBOOK / VISUAL GALLERY
-           ========================================================================== */
-        .editorial-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .editorial-card {
-            position: relative;
-            height: 480px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            background: var(--dark-surface);
-        }
-
-        .editorial-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(40%) contrast(120%);
-            transition: var(--transition-smooth);
-        }
-
-        .editorial-card:hover img {
-            filter: grayscale(0%) contrast(110%);
-            transform: scale(1.05);
-        }
-
-        .editorial-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, transparent 60%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 30px;
-            opacity: 0.85;
-            transition: var(--transition-smooth);
-        }
-
-        .editorial-title {
-            font-family: var(--font-editorial);
-            font-size: 1.5rem;
-            font-style: italic;
-            color: var(--gold-light);
-            margin-bottom: 5px;
-        }
-
-        .editorial-sub {
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
-
-        /* ==========================================================================
-           7. TOUR DATES (MINIMALIST & EXPENSIVE FEEL)
-           ========================================================================== */
-        .tour-table {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .tour-row {
-            display: grid;
-            grid-template-columns: 2fr 3fr 2fr 1.5fr;
-            align-items: center;
-            padding: 30px 40px;
-            background: var(--pure-black);
-            transition: var(--transition-smooth);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .tour-row:hover {
-            background: var(--dark-surface);
-            border-color: var(--purple-neon);
-        }
-
-        .tour-date {
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--gold-light);
-            letter-spacing: 2px;
-        }
-
-        .tour-location h4 {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: #fff;
-            margin-bottom: 4px;
-        }
-
-        .tour-location p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
+            font-weight: 600;
             letter-spacing: 1px;
-        }
-
-        .tour-status {
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--purple-neon);
-        }
-
-        .tour-btn {
-            justify-self: end;
-            padding: 10px 25px;
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            border-radius: 30px;
             text-decoration: none;
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: var(--transition-smooth);
+            transition: var(--transition-apple);
+            cursor: pointer;
         }
 
-        .tour-btn:hover {
-            background: var(--gold-light);
+        .btn-apple-primary {
+            background: var(--text-white);
             color: #000;
-            border-color: var(--gold-light);
-            font-weight: 700;
+        }
+
+        .btn-apple-primary:hover {
+            background: var(--gold-aged);
+            transform: scale(1.03);
+            box-shadow: 0 0 30px var(--gold-glow);
+        }
+
+        .btn-apple-glass {
+            background: var(--surface-glass);
+            color: var(--text-white);
+            border: 1px solid var(--surface-glass-border);
+            backdrop-filter: blur(20px);
+        }
+
+        .btn-apple-glass:hover {
+            border-color: rgba(147, 51, 234, 0.5);
+            transform: scale(1.03);
         }
 
         /* ==========================================================================
-           8. FOOTER & CONTACT
+           4. BENTO GRID SECTION (APPLE DESIGN LAYOUT)
            ========================================================================== */
-        footer {
-            background: var(--pure-black);
-            padding: 100px 8% 50px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        section {
+            padding: 120px 8%;
             position: relative;
             z-index: 2;
         }
 
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 80px;
+        .section-header {
+            margin-bottom: 60px;
         }
 
-        .footer-brand {
-            max-width: 400px;
-        }
-
-        .footer-brand h3 {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: 6px;
-            margin-bottom: 15px;
-        }
-
-        .footer-brand p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            line-height: 1.8;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 60px;
-        }
-
-        .link-group h5 {
-            font-size: 0.75rem;
+        .section-tag {
+            font-size: 0.7rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--gold-aged);
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            display: block;
         }
 
-        .link-group ul {
-            list-style: none;
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 3.2rem;
+            font-weight: 400;
+            color: var(--text-white);
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .bento-card {
+            background: var(--surface-glass);
+            border: 1px solid var(--surface-glass-border);
+            border-radius: var(--radius-apple);
+            padding: 35px;
+            backdrop-filter: blur(20px);
+            transition: var(--transition-apple);
+            position: relative;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-        }
-
-        .link-group a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: var(--transition-smooth);
-        }
-
-        .link-group a:hover {
-            color: #fff;
-        }
-
-        .footer-bottom {
-            display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-            font-size: 0.75rem;
-            color: var(--text-muted);
+        }
+
+        .bento-card:hover {
+            border-color: rgba(197, 160, 89, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
+
+        .bento-card-large {
+            grid-column: span 2;
+        }
+
+        .bento-card-title {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--text-white);
+        }
+
+        .bento-card-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .bento-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-top: 25px;
+            filter: contrast(110%) brightness(85%);
         }
 
         /* ==========================================================================
-           RESPONSIVE MOBILE DESIGN
+           5. MUSIC / AUDIO PLAYER WIDGET (MINIMALIST APPLE MUSIC STYLE)
            ========================================================================== */
-        @media (max-width: 992px) {
-            header {
-                padding: 20px 30px;
-            }
+        .player-card {
+            background: linear-gradient(135deg, rgba(22, 3, 38, 0.8) 0%, rgba(10, 10, 12, 0.9) 100%);
+            border: 1px solid rgba(147, 51, 234, 0.25);
+        }
 
-            nav ul {
-                display: none; /* Can be toggled or simplified */
-            }
+        .track-list-apple {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
 
-            .hero-main-title {
-                font-size: 3.5rem;
-            }
+        .track-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.02);
+            transition: var(--transition-apple);
+            cursor: pointer;
+        }
 
-            .music-showcase {
-                grid-template-columns: 1fr;
-            }
+        .track-row:hover {
+            background: rgba(197, 160, 89, 0.1);
+        }
 
-            .editorial-grid {
-                grid-template-columns: 1fr;
-            }
+        .track-row-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
 
-            .tour-row {
-                grid-template-columns: 1fr;
-                gap: 15px;
-                text-align: center;
-            }
+        .track-row-time {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
 
-            .tour-btn {
-                justify-self: center;
-            }
+        /* ==========================================================================
+           6. TOUR / CONCERTS (MINIMALIST ELEGANCE)
+           ========================================================================== */
+        .tour-list-apple {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
 
-            .footer-content {
-                flex-direction: column;
-                gap: 50px;
-            }
+        .tour-card-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--surface-glass);
+            border: 1px solid var(--surface-glass-border);
+            padding: 28px 35px;
+            border-radius: var(--radius-apple);
+            backdrop-filter: blur(20px);
+            transition: var(--transition-apple);
+        }
+
+        .tour-card-item:hover {
+            border-color: var(--gold-aged);
+            background: rgba(22, 3, 38, 0.6);
+        }
+
+        .tour-date-box {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            color: var(--gold-aged);
+        }
+
+        .tour-info-box h4 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .tour-info-box p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* ==========================================================================
+           7. FOOTER
+           ========================================================================== */
+        footer {
+            text-align: center;
+            padding: 80px 20px;
+            border-top: 1px solid var(--surface-glass-border);
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        footer strong {
+            color: var(--text-white);
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 900px) {
+            .hero-title { font-size: 3.5rem; }
+            .bento-grid { grid-template-columns: 1fr; }
+            .bento-card-large { grid-column: span 1; }
+            .tour-card-item { flex-direction: column; text-align: center; gap: 15px; }
+            header { width: 95%; padding: 12px 20px; }
+            nav ul { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 35mm Film Grain Overlay -->
+    <!-- Granulação Cinemática -->
     <div class="film-grain"></div>
 
-    <!-- Ambient Purple Volumetric Glow -->
-    <div class="ambient-glow"></div>
+    <!-- Canvas de Neblina / Atmosfera AOT -->
+    <canvas id="fog-canvas"></canvas>
 
-    <!-- HEADER / NAVIGATION -->
+    <!-- Header Translucido (Apple Minimal) -->
     <header>
-        <a href="#" class="brand-logo">
-            <span class="brand-title">Lil Thalis</span>
-            <span class="brand-kanji">サリス</span>
-        </a>
+        <a href="#" class="brand-logo">Lil Thalis</a>
         <nav>
             <ul>
-                <li><a href="#hero" class="active">Início</a></li>
-                <li><a href="#music">Discografia</a></li>
-                <li><a href="#editorial">Editorial</a></li>
+                <li><a href="#hero">Início</a></li>
+                <li><a href="#narrative">Conceito</a></li>
+                <li><a href="#music">Músicas</a></li>
                 <li><a href="#tour">Turnê</a></li>
-                <li><a href="#footer">Contato</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- HERO SECTION (HOMEPAGE) -->
+    <!-- Hero Section: Muralhas, Névoa e Luz Volumétrica -->
     <section id="hero" class="hero">
-        <div class="hero-bg-container">
-            <!-- Full screen editorial cinematic image of young singer -->
-            <img src="" alt="Lil Thalis Editorial Shot" class="hero-bg-img">
-            <div class="hero-vignette"></div>
-            <div class="hero-purple-lighting"></div>
-        </div>
-
+        <div class="hero-background-art"></div>
         <div class="hero-content">
-            <div class="hero-subtag">
-                <span>Álbum Visual Out Now</span>
-            </div>
-            <h1 class="hero-main-title">
-                Lil Thalis
-                <span>Sangue & Ouro</span>
-            </h1>
-            <div class="hero-action-bar">
-                <a href="#music" class="btn-luxury">Ouvir Álbum</a>
-                <a href="#tour" class="btn-outline">Datas da Turnê</a>
+            <span class="hero-badge">Álbum Visual & Imersivo</span>
+            <h1 class="hero-title">O Peso & A <i>Liberdade</i></h1>
+            <p class="hero-subtitle">
+                Uma experiência sonora minimalista sobre os limites da existência, guiada por arranjos cinematográficos, névoa e sombras.
+            </p>
+            <div class="hero-cta-group">
+                <a href="#music" class="btn-apple btn-apple-primary">Ouvir Agora</a>
+                <a href="#narrative" class="btn-apple btn-apple-glass">Explorar Conceito</a>
             </div>
         </div>
     </section>
 
-    <!-- MUSIC / DISCOGRAPHY SECTION -->
+    <!-- Bento Grid Section: Narrativa, Arte e Fotos Editoriais -->
+    <section id="narrative">
+        <div class="section-header">
+            <span class="section-tag">Filosofia Visual</span>
+            <h2 class="section-title">A Muralha e o Horizonte</h2>
+        </div>
+
+        <div class="bento-grid">
+            <!-- Card 1: O Conceito do Peso -->
+            <div class="bento-card bento-card-large">
+                <div>
+                    <h3 class="bento-card-title">Sensação de Muralha & Nevoeiro</h3>
+                    <p class="bento-card-desc">
+                        A estética do projeto canaliza o sentimento de isolamento perante o gigantesco. Como o horizonte cercado por muralhas sob um céu denso, a música de Lil Thalis contrasta a dor do confinamento com o desejo inabalável de liberdade.
+                    </p>
+                </div>
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=1000" alt="Distant foggy walls" class="bento-img">
+            </div>
+
+            <!-- Card 2: Editorial High Fashion -->
+            <div class="bento-card">
+                <div>
+                    <h3 class="bento-card-title">Editorial Dark</h3>
+                    <p class="bento-card-desc">
+                        Retratos minimalistas sob iluminação roxa e dourada envelhecida.
+                    </p>
+                </div>
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800" alt="Editorial Fashion" class="bento-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Player Section (Apple Music Bento Style) -->
     <section id="music">
         <div class="section-header">
-            <span class="section-kanji">アルバム & シングル</span>
-            <h2 class="section-title">Discografia</h2>
+            <span class="section-tag">Lançamento Oficial</span>
+            <h2 class="section-title">Repositório Sonoro</h2>
         </div>
 
-        <div class="music-showcase">
-            <!-- Left: Album & Interactive Vinyl Disc -->
-            <div class="album-cover-container">
-                <img src="" alt="Sangue & Ouro Cover" class="album-cover-img">
-                <div class="vinyl-disc"></div>
+        <div class="bento-grid">
+            <!-- Player Card -->
+            <div class="bento-card player-card bento-card-large">
+                <div>
+                    <span class="section-tag" style="color: var(--text-white);">Álbum Completo</span>
+                    <h3 class="bento-card-title">Muralhas de Névoa (2026)</h3>
+                    <p class="bento-card-desc">Produção executiva em áudio espacial com instrumentos orquestrais e graves distorcidos.</p>
+                </div>
+
+                <div class="track-list-apple">
+                    <div class="track-row">
+                        <span class="track-row-title">01. O Céu Sobre as Muralhas</span>
+                        <span class="track-row-time">03:45</span>
+                    </div>
+                    <div class="track-row">
+                        <span class="track-row-title">02. Asas de Pano e Ferro</span>
+                        <span class="track-row-time">04:12</span>
+                    </div>
+                    <div class="track-row">
+                        <span class="track-row-title">03. Eclipse de Ouro Envelhecido</span>
+                        <span class="track-row-time">03:18</span>
+                    </div>
+                </div>
             </div>
 
-            <!-- Right: High-Fashion Tracklist -->
-            <div class="tracklist">
-                <div class="track-item active" onclick="selectTrack(this, 'Eclipse Rouge')">
-                    <div class="track-meta">
-                        <span class="track-num">01</span>
-                        <span class="track-name">Eclipse Rouge</span>
-                    </div>
-                    <span class="track-duration">3:42</span>
-                </div>
-
-                <div class="track-item" onclick="selectTrack(this, 'Tokyo Nights')">
-                    <div class="track-meta">
-                        <span class="track-num">02</span>
-                        <span class="track-name">Tokyo Lights & Shadows</span>
-                    </div>
-                    <span class="track-duration">4:15</span>
-                </div>
-
-                <div class="track-item" onclick="selectTrack(this, 'Sombra e Luz')">
-                    <div class="track-meta">
-                        <span class="track-num">03</span>
-                        <span class="track-name">Sombra e Luz (feat. Akira)</span>
-                    </div>
-                    <span class="track-duration">3:18</span>
-                </div>
-
-                <div class="track-item" onclick="selectTrack(this, 'Neo São Paulo')">
-                    <div class="track-meta">
-                        <span class="track-num">04</span>
-                        <span class="track-name">Neo São Paulo</span>
-                    </div>
-                    <span class="track-duration">3:55</span>
-                </div>
-
-                <div class="track-item" onclick="selectTrack(this, 'Aura Roxa')">
-                    <div class="track-meta">
-                        <span class="track-num">05</span>
-                        <span class="track-name">Aura Roxa (Outro)</span>
-                    </div>
-                    <span class="track-duration">2:40</span>
-                </div>
+            <!-- Vinyl/Art Card -->
+            <div class="bento-card">
+                <h3 class="bento-card-title">Alta Fidelidade</h3>
+                <p class="bento-card-desc">Disponível em Dolby Atmos nas principais plataformas.</p>
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" alt="Album Art" class="bento-img">
             </div>
         </div>
     </section>
 
-    <!-- EDITORIAL LOOKBOOK SECTION -->
-    <section id="editorial">
-        <div class="section-header">
-            <span class="section-kanji">ビジュアル・ギャラリー</span>
-            <h2 class="section-title">Galeria Editorial</h2>
-        </div>
-
-        <div class="editorial-grid">
-            <div class="editorial-card">
-                <img src="" alt="Editorial 01">
-                <div class="editorial-overlay">
-                    <div class="editorial-title">Série Noir I</div>
-                    <div class="editorial-sub">Tóquio • 2026</div>
-                </div>
-            </div>
-
-            <div class="editorial-card">
-                <img src="" alt="Editorial 02">
-                <div class="editorial-overlay">
-                    <div class="editorial-title">Luz Volumétrica</div>
-                    <div class="editorial-sub">São Paulo • Lookbook</div>
-                </div>
-            </div>
-
-            <div class="editorial-card">
-                <img src="" alt="Editorial 03">
-                <div class="editorial-overlay">
-                    <div class="editorial-title">Estética Anime Dark</div>
-                    <div class="editorial-sub">Capa de Revista</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TOUR DATES SECTION -->
+    <!-- Tour Section -->
     <section id="tour">
         <div class="section-header">
-            <span class="section-subtitle">ワールドツアー</span>
-            <h2 class="section-title">Turnê Mundial 2026</h2>
+            <span class="section-tag">Apresentações</span>
+            <h2 class="section-title">Datas do Espetáculo</h2>
         </div>
 
-        <div class="tour-table">
-            <div class="tour-row">
-                <div class="tour-date">28 OUT</div>
-                <div class="tour-location">
-                    <h4>São Paulo, Brasil</h4>
-                    <p>Espaço Unimed</p>
+        <div class="tour-list-apple">
+            <div class="tour-card-item">
+                <div class="tour-date-box">28 OUT</div>
+                <div class="tour-info-box">
+                    <h4>São Paulo — Brasil</h4>
+                    <p>Espaço Unimed • Experiência Imersiva</p>
                 </div>
-                <div class="tour-status">Esgotado</div>
-                <a href="#" class="tour-btn">VIP Access</a>
+                <a href="#" class="btn-apple btn-apple-primary">Ingressos</a>
             </div>
 
-            <div class="tour-row">
-                <div class="tour-date">12 NOV</div>
-                <div class="tour-location">
-                    <h4>Rio de Janeiro, Brasil</h4>
-                    <p>Qualistage</p>
+            <div class="tour-card-item">
+                <div class="tour-date-box">12 NOV</div>
+                <div class="tour-info-box">
+                    <h4>Tóquio — Japão</h4>
+                    <p>Shibuya Hall • Special Darkness Edition</p>
                 </div>
-                <div class="tour-status">Poucos Ingressos</div>
-                <a href="#" class="tour-btn">Comprar</a>
-            </div>
-
-            <div class="tour-row">
-                <div class="tour-date">05 DEZ</div>
-                <div class="tour-location">
-                    <h4>Tóquio, Japão</h4>
-                    <p>Shibuya Stream Hall</p>
-                </div>
-                <div class="tour-status">Disponível</div>
-                <a href="#" class="tour-btn">Comprar</a>
-            </div>
-
-            <div class="tour-row">
-                <div class="tour-date">18 DEZ</div>
-                <div class="tour-location">
-                    <h4>Lisboa, Portugal</h4>
-                    <p>Campo Pequeno</p>
-                </div>
-                <div class="tour-status">Disponível</div>
-                <a href="#" class="tour-btn">Comprar</a>
+                <a href="#" class="btn-apple btn-apple-glass">Reservar</a>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER & CONTACT -->
-    <footer id="footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <h3>LIL THALIS</h3>
-                <p>Uma experiência sonora e visual imersiva. Fusão entre o R&B dramático, a atmosfera dos filmes de alta moda e a paixão pelos animes dark.</p>
-            </div>
-
-            <div class="footer-links">
-                <div class="link-group">
-                    <h5>Plataformas</h5>
-                    <ul>
-                        <li><a href="#">Spotify</a></li>
-                        <li><a href="#">Apple Music</a></li>
-                        <li><a href="#">YouTube</a></li>
-                        <li><a href="#">Tidal</a></li>
-                    </ul>
-                </div>
-
-                <div class="link-group">
-                    <h5>Social</h5>
-                    <ul>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">X / Twitter</a></li>
-                        <li><a href="#">TikTok</a></li>
-                    </ul>
-                </div>
-
-                <div class="link-group">
-                    <h5>Contato</h5>
-                    <ul>
-                        <li><a href="#">management@lilthalis.com</a></li>
-                        <li><a href="#">press@lilthalis.com</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div>&copy; 2026 LIL THALIS. TODOS OS DIREITOS RESERVADOS.</div>
-            <div>SÃO PAULO — TOKYO</div>
-        </div>
+    <!-- Footer -->
+    <footer>
+        <p>Designed with Apple Minimalist Precision & Dark Cinematic Mood.</p>
+        <p style="margin-top: 10px;">&copy; 2026 <strong>LIL THALIS</strong>. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- INTERACTIVE JAVASCRIPT -->
+    <!-- SCRIPT DE NEBLINA EM TEMPO REAL (ANIMATED FOG CANVAS) -->
     <script>
-        // Track Selection Interactive Script
-        function selectTrack(element, trackName) {
-            document.querySelectorAll('.track-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            element.classList.add('active');
+        const canvas = document.getElementById('fog-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
+        window.addEventListener('resize', resize);
+        resize();
 
-        // Smooth Navbar Active Link Highlighter
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
+        // Nuvens de neblina simuladas
+        const fogParticles = Array.from({ length: 25 }, () => ({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 300 + 150,
+            opacity: Math.random() * 0.08 + 0.02,
+            speedX: Math.random() * 0.3 + 0.05
+        }));
+
+        function drawFog() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            fogParticles.forEach(p => {
+                p.x += p.speedX;
+                if (p.x - p.radius > canvas.width) p.x = -p.radius;
+
+                const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius);
+                gradient.addColorStop(0, `rgba(147, 51, 234, ${p.opacity})`);
+                gradient.addColorStop(0.5, `rgba(15, 10, 25, ${p.opacity * 0.5})`);
+                gradient.addColorStop(1, 'transparent');
+
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fill();
             });
 
-            document.querySelectorAll('nav a').forEach(a => {
-                a.classList.remove('active');
-                if (a.getAttribute('href').includes(current)) {
-                    a.classList.add('active');
-                }
-            });
-        });
+            requestAnimationFrame(drawFog);
+        }
+        drawFog();
     </script>
 </body>
 </html>
