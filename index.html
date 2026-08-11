@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIL THALIS — Official Cinematic Website</title>
-    
-    <!-- Apple-style Modern Sans & Serif Typography -->
+    <title>Lil Thalis | Official Dark Luxury Website</title>
+    <!-- Tipografia de Luxo e Moderna do Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Noto+Serif+JP:wght@300;600&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
     <style>
         /* ==========================================================================
-           1. CORE SYSTEM & APPLE-INSPIRED DARK LUXURY VARIABLES
+           1. VARIÁVEIS DE DESIGN & RESET
            ========================================================================== */
         :root {
-            --bg-black: #000000;
-            --surface-glass: rgba(18, 18, 22, 0.65);
-            --surface-glass-border: rgba(255, 255, 255, 0.08);
+            --bg-void: #05020a;
+            --bg-card: rgba(15, 7, 26, 0.65);
+            --purple-deep: #1a0826;
+            --purple-glow: #8b5cf6;
+            --purple-neon: #a855f7;
             --gold-aged: #c5a059;
-            --gold-glow: rgba(197, 160, 89, 0.3);
-            --purple-deep: #160326;
-            --purple-glow: rgba(147, 51, 234, 0.25);
-            --text-white: #f5f5f7;
-            --text-secondary: #86868b;
-            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-serif: 'Cormorant Garamond', serif;
-            --radius-apple: 22px;
-            --transition-apple: all 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+            --gold-light: #e6ca85;
+            --silver-muted: #94a3b8;
+            --silver-bright: #f1f5f9;
+            --font-title: 'Cinzel', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --font-jp: 'Noto Serif JP', serif;
+            --border-gold: rgba(197, 160, 89, 0.25);
+            --border-purple: rgba(139, 92, 246, 0.2);
         }
 
         * {
@@ -38,567 +38,944 @@
         }
 
         body {
-            background-color: var(--bg-black);
-            color: var(--text-white);
-            font-family: var(--font-main);
+            background-color: var(--bg-void);
+            color: var(--silver-bright);
+            font-family: var(--font-body);
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+            selection-background-color: var(--purple-glow);
+            selection-color: #fff;
         }
 
-        /* Granulação de Cinema 35mm */
-        .film-grain {
+        /* Canvas de Partículas para Atmosfera Anime/Cinemática */
+        #particles-canvas {
             position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 99;
-            opacity: 0.035;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        /* Canvas de Neblina / Fog de AOT ao fundo */
-        #fog-canvas {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
             pointer-events: none;
         }
 
         /* ==========================================================================
-           2. HEADER ESTILO APPLE (MINIMALISTA E TRANSLÚCIDO)
+           2. NAVEGAÇÃO / HEADER
            ========================================================================== */
         header {
             position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 1100px;
+            top: 0;
+            width: 100%;
             z-index: 100;
-            padding: 14px 28px;
+            padding: 20px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 12, 0.7);
-            backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border: 1px solid var(--surface-glass-border);
-            border-radius: 40px;
+            background: linear-gradient(180deg, rgba(5, 2, 10, 0.9) 0%, rgba(5, 2, 10, 0) 100%);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
         }
 
-        .brand-logo {
-            font-size: 0.95rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--text-white);
+        .logo {
+            display: flex;
+            flex-direction: column;
             text-decoration: none;
+        }
+
+        .logo-title {
+            font-family: var(--font-title);
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--gold-light) 50%, var(--gold-aged) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        .logo-sub {
+            font-family: var(--font-jp);
+            font-size: 0.65rem;
+            color: var(--purple-glow);
+            letter-spacing: 6px;
+            margin-top: -2px;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 35px;
         }
 
         nav a {
-            color: var(--text-secondary);
+            color: var(--silver-muted);
             text-decoration: none;
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            transition: var(--transition-apple);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            position: relative;
         }
 
-        nav a:hover {
-            color: var(--text-white);
+        nav a:hover, nav a.active {
+            color: var(--gold-light);
+            text-shadow: 0 0 10px rgba(197, 160, 89, 0.5);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold-aged);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
 
         /* ==========================================================================
-           3. HERO CINEMATOGRÁFICO (MURALHAS NA NEBLINA + LUZ VOLUMÉTRICA)
+           3. SEÇÃO HERO (HOMEPAGE EDITORIAL)
            ========================================================================== */
         .hero {
             position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 140px 20px 80px;
-            z-index: 1;
+            justify-content: space-between;
+            padding: 120px 8% 60px;
+            z-index: 2;
+            overflow: hidden;
         }
 
-        .hero-background-art {
+        /* Japanese Kanji Backdrop Accent */
+        .kanji-bg {
             position: absolute;
-            inset: 0;
+            right: 5%;
+            top: 15%;
+            font-family: var(--font-jp);
+            font-size: 28vw;
+            color: rgba(139, 92, 246, 0.03);
+            user-select: none;
             z-index: -1;
-            background: 
-                radial-gradient(circle at 50% 30%, rgba(147, 51, 234, 0.18) 0%, transparent 60%),
-                linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.9) 90%, #000 100%),
-                url('https://images.unsplash.com/photo-1509114397022-ed747cca3f65?auto=format&fit=crop&q=80&w=2000') center/cover;
-            filter: brightness(55%) contrast(120%) grayscale(20%);
+            line-height: 1;
+            font-weight: 900;
         }
 
         .hero-content {
-            max-width: 850px;
+            max-width: 550px;
+            z-index: 5;
         }
 
-        .hero-badge {
+        .tagline {
             display: inline-block;
-            font-size: 0.68rem;
+            font-size: 0.75rem;
             letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--gold-aged);
-            background: rgba(197, 160, 89, 0.08);
-            border: 1px solid rgba(197, 160, 89, 0.25);
-            padding: 8px 20px;
-            border-radius: 30px;
+            border: 1px solid var(--border-gold);
+            padding: 6px 16px;
+            border-radius: 50px;
             margin-bottom: 25px;
-            backdrop-filter: blur(10px);
+            background: rgba(197, 160, 89, 0.05);
+            backdrop-filter: blur(5px);
         }
 
         .hero-title {
-            font-family: var(--font-serif);
-            font-size: 5.5rem;
-            font-weight: 400;
-            line-height: 1.02;
-            margin-bottom: 25px;
-            letter-spacing: -1px;
-            color: var(--text-white);
+            font-family: var(--font-title);
+            font-size: 4.5rem;
+            line-height: 1.05;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
         }
 
-        .hero-title i {
-            font-style: italic;
-            background: linear-gradient(135deg, #ffffff 0%, var(--gold-aged) 100%);
+        .hero-title span {
+            display: block;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--purple-neon) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero-subtitle {
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
+        .hero-desc {
+            color: var(--silver-muted);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 35px;
             font-weight: 300;
         }
 
-        .hero-cta-group {
+        .hero-cta {
             display: flex;
-            justify-content: center;
             gap: 20px;
         }
 
-        .btn-apple {
-            padding: 16px 36px;
+        .btn {
+            padding: 14px 32px;
             font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            border-radius: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             text-decoration: none;
-            transition: var(--transition-apple);
+            border-radius: 2px;
+            transition: all 0.4s ease;
             cursor: pointer;
+            display: inline-block;
         }
 
-        .btn-apple-primary {
-            background: var(--text-white);
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold-aged) 0%, #8a6d2f 100%);
             color: #000;
+            font-weight: 700;
+            border: 1px solid var(--gold-light);
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
         }
 
-        .btn-apple-primary:hover {
-            background: var(--gold-aged);
-            transform: scale(1.03);
-            box-shadow: 0 0 30px var(--gold-glow);
+        .btn-primary:hover {
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.6);
+            transform: translateY(-2px);
         }
 
-        .btn-apple-glass {
-            background: var(--surface-glass);
-            color: var(--text-white);
-            border: 1px solid var(--surface-glass-border);
-            backdrop-filter: blur(20px);
+        .btn-secondary {
+            background: transparent;
+            color: var(--silver-bright);
+            border: 1px solid var(--border-purple);
+            backdrop-filter: blur(5px);
         }
 
-        .btn-apple-glass:hover {
-            border-color: rgba(147, 51, 234, 0.5);
-            transform: scale(1.03);
+        .btn-secondary:hover {
+            border-color: var(--purple-glow);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Frame Editorial da Imagem Visual Hero */
+        .hero-visual {
+            position: relative;
+            width: 450px;
+            height: 600px;
+            z-index: 4;
+        }
+
+        .hero-img-frame {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--border-gold);
+            padding: 15px;
+            background: rgba(15, 7, 26, 0.4);
+            box-shadow: 0 0 50px rgba(139, 92, 246, 0.15);
+        }
+
+        .hero-img-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(26, 8, 38, 0.2) 0%, rgba(5, 2, 10, 0.9) 100%),
+                        url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1000') center/cover;
+            filter: contrast(110%) saturate(85%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efeito de Aura Anime e Luzes Neon */
+        .hero-img-placeholder::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 30%, rgba(168, 85, 247, 0.25) 0%, transparent 70%);
+            mix-blend-mode: screen;
+        }
+
+        .editorial-badge {
+            position: absolute;
+            bottom: -20px;
+            left: -30px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            padding: 15px 25px;
+            backdrop-filter: blur(15px);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .editorial-badge p {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-light);
         }
 
         /* ==========================================================================
-           4. BENTO GRID SECTION (APPLE DESIGN LAYOUT)
+           4. SEÇÕES GERAIS E TÍTULOS
            ========================================================================== */
         section {
-            padding: 120px 8%;
+            padding: 100px 8%;
             position: relative;
             z-index: 2;
         }
 
         .section-header {
-            margin-bottom: 60px;
+            text-align: center;
+            margin-bottom: 70px;
         }
 
-        .section-tag {
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--gold-aged);
-            margin-bottom: 10px;
+        .section-subtitle {
+            font-family: var(--font-jp);
+            color: var(--purple-glow);
+            font-size: 0.9rem;
+            letter-spacing: 4px;
             display: block;
+            margin-bottom: 8px;
         }
 
         .section-title {
-            font-family: var(--font-serif);
-            font-size: 3.2rem;
-            font-weight: 400;
-            color: var(--text-white);
+            font-family: var(--font-title);
+            font-size: 2.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #fff;
+            position: relative;
+            display: inline-block;
         }
 
-        .bento-grid {
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-aged), transparent);
+        }
+
+        /* ==========================================================================
+           5. MUSIC / DISCOGRAPHY SECTION
+           ========================================================================== */
+        .music-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
         }
 
-        .bento-card {
-            background: var(--surface-glass);
-            border: 1px solid var(--surface-glass-border);
-            border-radius: var(--radius-apple);
-            padding: 35px;
-            backdrop-filter: blur(20px);
-            transition: var(--transition-apple);
+        .track-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-purple);
+            padding: 20px;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            backdrop-filter: blur(10px);
         }
 
-        .bento-card:hover {
-            border-color: rgba(197, 160, 89, 0.3);
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        .track-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold-aged);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
         }
 
-        .bento-card-large {
-            grid-column: span 2;
-        }
-
-        .bento-card-title {
-            font-family: var(--font-serif);
-            font-size: 2.2rem;
+        .track-cover {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
             margin-bottom: 15px;
-            color: var(--text-white);
+            filter: grayscale(20%) contrast(105%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .bento-card-desc {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
+        .track-info h3 {
+            font-family: var(--font-title);
+            font-size: 1.2rem;
+            color: var(--silver-bright);
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .track-info p {
+            font-size: 0.8rem;
+            color: var(--gold-light);
+            margin-bottom: 15px;
+        }
+
+        .play-btn {
+            background: transparent;
+            border: 1px solid var(--border-gold);
+            color: var(--silver-bright);
+            padding: 8px 18px;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .track-card:hover .play-btn {
+            background: var(--gold-aged);
+            color: #000;
+            font-weight: 600;
+        }
+
+        /* Custom Mini Audio Player Sticky Container */
+        .player-bar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 800px;
+            background: rgba(10, 4, 18, 0.85);
+            border: 1px solid var(--border-gold);
+            padding: 12px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(20px);
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+
+        .player-track-details {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .player-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--purple-neon);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--purple-neon);
+        }
+
+        .player-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .player-controls button {
+            background: none;
+            border: none;
+            color: var(--gold-light);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+
+        /* ==========================================================================
+           6. ABOUT / EDITORIAL BIOGRAPHY
+           ========================================================================== */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-img {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: url('https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=1000') center/cover;
+            border: 1px solid var(--border-gold);
+            filter: contrast(115%) brightness(85%);
+        }
+
+        .about-img::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, rgba(26, 8, 38, 0.6), transparent);
+        }
+
+        .about-text p {
+            color: var(--silver-muted);
+            line-height: 1.9;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
             font-weight: 300;
         }
 
-        .bento-img {
-            width: 100%;
-            height: 240px;
-            object-fit: cover;
-            border-radius: 14px;
-            margin-top: 25px;
-            filter: contrast(110%) brightness(85%);
-        }
-
-        /* ==========================================================================
-           5. MUSIC / AUDIO PLAYER WIDGET (MINIMALIST APPLE MUSIC STYLE)
-           ========================================================================== */
-        .player-card {
-            background: linear-gradient(135deg, rgba(22, 3, 38, 0.8) 0%, rgba(10, 10, 12, 0.9) 100%);
-            border: 1px solid rgba(147, 51, 234, 0.25);
-        }
-
-        .track-list-apple {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .track-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 18px;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.02);
-            transition: var(--transition-apple);
-            cursor: pointer;
-        }
-
-        .track-row:hover {
-            background: rgba(197, 160, 89, 0.1);
-        }
-
-        .track-row-title {
-            font-size: 0.9rem;
+        .about-text p strong {
+            color: var(--gold-light);
             font-weight: 500;
         }
 
-        .track-row-time {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-
         /* ==========================================================================
-           6. TOUR / CONCERTS (MINIMALIST ELEGANCE)
+           7. TOUR / SHOWS
            ========================================================================== */
-        .tour-list-apple {
+        .tour-list {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .tour-card-item {
+        .tour-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: var(--surface-glass);
-            border: 1px solid var(--surface-glass-border);
-            padding: 28px 35px;
-            border-radius: var(--radius-apple);
-            backdrop-filter: blur(20px);
-            transition: var(--transition-apple);
+            background: var(--bg-card);
+            border: 1px solid var(--border-purple);
+            padding: 25px 35px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
 
-        .tour-card-item:hover {
+        .tour-item:hover {
             border-color: var(--gold-aged);
-            background: rgba(22, 3, 38, 0.6);
+            background: rgba(26, 8, 38, 0.8);
+            transform: scale(1.01);
         }
 
-        .tour-date-box {
-            font-family: var(--font-serif);
-            font-size: 1.6rem;
-            color: var(--gold-aged);
+        .tour-date {
+            font-family: var(--font-title);
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            min-width: 140px;
         }
 
-        .tour-info-box h4 {
+        .tour-venue h4 {
             font-size: 1.1rem;
-            font-weight: 500;
+            color: #fff;
             margin-bottom: 4px;
         }
 
-        .tour-info-box p {
+        .tour-venue p {
             font-size: 0.8rem;
-            color: var(--text-secondary);
+            color: var(--silver-muted);
+        }
+
+        .tour-action .btn-ticket {
+            padding: 10px 24px;
+            font-size: 0.75rem;
+            border: 1px solid var(--gold-aged);
+            color: var(--gold-aged);
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .tour-action .btn-ticket:hover {
+            background: var(--gold-aged);
+            color: #000;
         }
 
         /* ==========================================================================
-           7. FOOTER
+           8. CONTACT & FOOTER
            ========================================================================== */
+        .contact-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 8px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            background: rgba(5, 2, 10, 0.8);
+            border: 1px solid var(--border-purple);
+            padding: 12px 15px;
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--gold-aged);
+        }
+
         footer {
             text-align: center;
-            padding: 80px 20px;
-            border-top: 1px solid var(--surface-glass-border);
-            color: var(--text-secondary);
+            padding: 40px;
+            border-top: 1px solid rgba(197, 160, 89, 0.1);
+            position: relative;
+            z-index: 2;
+            background: var(--bg-void);
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: var(--silver-muted);
+            letter-spacing: 1px;
+        }
+
+        .footer-jp {
+            font-family: var(--font-jp);
+            color: var(--purple-glow);
+            margin-top: 5px;
             font-size: 0.8rem;
         }
 
-        footer strong {
-            color: var(--text-white);
-        }
+        /* ==========================================================================
+           RESPONSIVIDADE (MOBILE & TABLETS)
+           ========================================================================== */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 140px;
+            }
 
-        /* RESPONSIVIDADE */
-        @media (max-width: 900px) {
-            .hero-title { font-size: 3.5rem; }
-            .bento-grid { grid-template-columns: 1fr; }
-            .bento-card-large { grid-column: span 1; }
-            .tour-card-item { flex-direction: column; text-align: center; gap: 15px; }
-            header { width: 95%; padding: 12px 20px; }
-            nav ul { display: none; }
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-title {
+                font-size: 3.2rem;
+            }
+
+            .hero-cta {
+                justify-content: center;
+                margin-bottom: 50px;
+            }
+
+            .hero-visual {
+                width: 100%;
+                max-width: 380px;
+                height: 480px;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 15px 25px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 0.75rem;
+            }
+
+            .tour-item {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Granulação Cinemática -->
-    <div class="film-grain"></div>
+    <!-- Fundo Interativo de Partículas Anime (Efeito Épico & Cinematográfico) -->
+    <canvas id="particles-canvas"></canvas>
 
-    <!-- Canvas de Neblina / Atmosfera AOT -->
-    <canvas id="fog-canvas"></canvas>
-
-    <!-- Header Translucido (Apple Minimal) -->
+    <!-- Header / Navegação -->
     <header>
-        <a href="#" class="brand-logo">Lil Thalis</a>
+        <a href="#" class="logo">
+            <span class="logo-title">Lil Thalis</span>
+            <span class="logo-sub">リル・サリス</span>
+        </a>
         <nav>
             <ul>
                 <li><a href="#hero">Início</a></li>
-                <li><a href="#narrative">Conceito</a></li>
                 <li><a href="#music">Músicas</a></li>
-                <li><a href="#tour">Turnê</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#tour">Agenda</a></li>
+                <li><a href="#contact">Contato</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section: Muralhas, Névoa e Luz Volumétrica -->
+    <!-- 1. Hero / Homepage -->
     <section id="hero" class="hero">
-        <div class="hero-background-art"></div>
+        <div class="kanji-bg">サリス</div>
         <div class="hero-content">
-            <span class="hero-badge">Álbum Visual & Imersivo</span>
-            <h1 class="hero-title">O Peso & A <i>Liberdade</i></h1>
-            <p class="hero-subtitle">
-                Uma experiência sonora minimalista sobre os limites da existência, guiada por arranjos cinematográficos, névoa e sombras.
+            <span class="tagline">Novo Álbum • Sangue & Ouro</span>
+            <h1 class="hero-title">Lil Thalis <span>Dark Cinematic</span></h1>
+            <p class="hero-desc">
+                Uma fusão vanguardista entre o som sombrio, a estética luxuosa da alta moda e a atmosfera cinematográfica inspirada em animes.
             </p>
-            <div class="hero-cta-group">
-                <a href="#music" class="btn-apple btn-apple-primary">Ouvir Agora</a>
-                <a href="#narrative" class="btn-apple btn-apple-glass">Explorar Conceito</a>
+            <div class="hero-cta">
+                <a href="#music" class="btn btn-primary">Ouvir Agora</a>
+                <a href="#tour" class="btn btn-secondary">Ver Tour</a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="hero-img-frame">
+                <div class="hero-img-placeholder"></div>
+            </div>
+            <div class="editorial-badge">
+                <div>
+                    <p>Editorial Vol. 01</p>
+                    <small style="color: var(--silver-muted); font-size: 0.65rem;">Dark Aesthetics 2026</small>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Bento Grid Section: Narrativa, Arte e Fotos Editoriais -->
-    <section id="narrative">
-        <div class="section-header">
-            <span class="section-tag">Filosofia Visual</span>
-            <h2 class="section-title">A Muralha e o Horizonte</h2>
-        </div>
-
-        <div class="bento-grid">
-            <!-- Card 1: O Conceito do Peso -->
-            <div class="bento-card bento-card-large">
-                <div>
-                    <h3 class="bento-card-title">Sensação de Muralha & Nevoeiro</h3>
-                    <p class="bento-card-desc">
-                        A estética do projeto canaliza o sentimento de isolamento perante o gigantesco. Como o horizonte cercado por muralhas sob um céu denso, a música de Lil Thalis contrasta a dor do confinamento com o desejo inabalável de liberdade.
-                    </p>
-                </div>
-                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=1000" alt="Distant foggy walls" class="bento-img">
-            </div>
-
-            <!-- Card 2: Editorial High Fashion -->
-            <div class="bento-card">
-                <div>
-                    <h3 class="bento-card-title">Editorial Dark</h3>
-                    <p class="bento-card-desc">
-                        Retratos minimalistas sob iluminação roxa e dourada envelhecida.
-                    </p>
-                </div>
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800" alt="Editorial Fashion" class="bento-img">
-            </div>
-        </div>
-    </section>
-
-    <!-- Music Player Section (Apple Music Bento Style) -->
+    <!-- 2. Seção Músicas / Portfólio de Lançamentos -->
     <section id="music">
         <div class="section-header">
-            <span class="section-tag">Lançamento Oficial</span>
-            <h2 class="section-title">Repositório Sonoro</h2>
+            <span class="section-subtitle">ディスコグラフィー</span>
+            <h2 class="section-title">Lançamentos</h2>
         </div>
 
-        <div class="bento-grid">
-            <!-- Player Card -->
-            <div class="bento-card player-card bento-card-large">
-                <div>
-                    <span class="section-tag" style="color: var(--text-white);">Álbum Completo</span>
-                    <h3 class="bento-card-title">Muralhas de Névoa (2026)</h3>
-                    <p class="bento-card-desc">Produção executiva em áudio espacial com instrumentos orquestrais e graves distorcidos.</p>
-                </div>
-
-                <div class="track-list-apple">
-                    <div class="track-row">
-                        <span class="track-row-title">01. O Céu Sobre as Muralhas</span>
-                        <span class="track-row-time">03:45</span>
-                    </div>
-                    <div class="track-row">
-                        <span class="track-row-title">02. Asas de Pano e Ferro</span>
-                        <span class="track-row-time">04:12</span>
-                    </div>
-                    <div class="track-row">
-                        <span class="track-row-title">03. Eclipse de Ouro Envelhecido</span>
-                        <span class="track-row-time">03:18</span>
-                    </div>
+        <div class="music-grid">
+            <!-- Track 1 -->
+            <div class="track-card">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600" alt="Eclipse Rouge" class="track-cover">
+                <div class="track-info">
+                    <h3>Eclipse Rouge</h3>
+                    <p>Single • 2026</p>
+                    <button class="play-btn" onclick="playTrack('Eclipse Rouge')">▶ Executar</button>
                 </div>
             </div>
 
-            <!-- Vinyl/Art Card -->
-            <div class="bento-card">
-                <h3 class="bento-card-title">Alta Fidelidade</h3>
-                <p class="bento-card-desc">Disponível em Dolby Atmos nas principais plataformas.</p>
-                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" alt="Album Art" class="bento-img">
+            <!-- Track 2 -->
+            <div class="track-card">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=600" alt="Tokyo Nights" class="track-cover">
+                <div class="track-info">
+                    <h3>Tokyo Lights & Shadows</h3>
+                    <p>EP • Sangue & Ouro</p>
+                    <button class="play-btn" onclick="playTrack('Tokyo Lights & Shadows')">▶ Executar</button>
+                </div>
+            </div>
+
+            <!-- Track 3 -->
+            <div class="track-card">
+                <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=600" alt="Neo São Paulo" class="track-cover">
+                <div class="track-info">
+                    <h3>Neo São Paulo</h3>
+                    <p>Single • 2025</p>
+                    <button class="play-btn" onclick="playTrack('Neo São Paulo')">▶ Executar</button>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Tour Section -->
-    <section id="tour">
+    <!-- Player Fixo de Áudio (UI Demo) -->
+    <div class="player-bar">
+        <div class="player-track-details">
+            <div class="player-dot"></div>
+            <div>
+                <div class="player-title" id="current-track">Eclipse Rouge - Lil Thalis</div>
+                <small style="color: var(--silver-muted); font-size:0.7rem;">Playing High-Fidelity Audio</small>
+            </div>
+        </div>
+        <div class="player-controls">
+            <button onclick="togglePlay()">⏸</button>
+            <button>⏭</button>
+        </div>
+    </div>
+
+    <!-- 3. Seção Sobre / Editorial Bio -->
+    <section id="about">
         <div class="section-header">
-            <span class="section-tag">Apresentações</span>
-            <h2 class="section-title">Datas do Espetáculo</h2>
+            <span class="section-subtitle">アーティストについて</span>
+            <h2 class="section-title">Sobre o Artista</h2>
         </div>
 
-        <div class="tour-list-apple">
-            <div class="tour-card-item">
-                <div class="tour-date-box">28 OUT</div>
-                <div class="tour-info-box">
-                    <h4>São Paulo — Brasil</h4>
-                    <p>Espaço Unimed • Experiência Imersiva</p>
+        <div class="about-container">
+            <div class="about-img"></div>
+            <div class="about-text">
+                <p><strong>Lil Thalis</strong> é um artista brasileiro que redefiniu as fronteiras entre a música, o luxo e a estética visual dramática dos animes contemporâneos.</p>
+                <p>Com arranjos cinematográficos, orquestrações profundas em tons de roxo e ouro, e letras de alto impacto emocional, suas apresentações e criações transportam o público para um universo paralelo misterioso e elegante.</p>
+                <p>Suas influências transitam entre a alta costura de Paris e Tóquio, arranjos orquestrais épicos e graves marcantes da cena urbana moderna.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Seção Agenda / Shows -->
+    <section id="tour">
+        <div class="section-header">
+            <span class="section-subtitle">ツアー日程</span>
+            <h2 class="section-title">Agenda / Tour</h2>
+        </div>
+
+        <div class="tour-list">
+            <div class="tour-item">
+                <div class="tour-date">28 OUT 2026</div>
+                <div class="tour-venue">
+                    <h4>Audio Club</h4>
+                    <p>São Paulo, SP — Brasil</p>
                 </div>
-                <a href="#" class="btn-apple btn-apple-primary">Ingressos</a>
+                <div class="tour-action">
+                    <a href="#" class="btn-ticket">Ingressos</a>
+                </div>
             </div>
 
-            <div class="tour-card-item">
-                <div class="tour-date-box">12 NOV</div>
-                <div class="tour-info-box">
-                    <h4>Tóquio — Japão</h4>
-                    <p>Shibuya Hall • Special Darkness Edition</p>
+            <div class="tour-item">
+                <div class="tour-date">12 NOV 2026</div>
+                <div class="tour-venue">
+                    <h4>Circo Voador</h4>
+                    <p>Rio de Janeiro, RJ — Brasil</p>
                 </div>
-                <a href="#" class="btn-apple btn-apple-glass">Reservar</a>
+                <div class="tour-action">
+                    <a href="#" class="btn-ticket">Ingressos</a>
+                </div>
             </div>
+
+            <div class="tour-item">
+                <div class="tour-date">05 DEC 2026</div>
+                <div class="tour-venue">
+                    <h4>Shibuya Stream Hall</h4>
+                    <p>Tóquio — Japão</p>
+                </div>
+                <div class="tour-action">
+                    <a href="#" class="btn-ticket">VIP Tickets</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Seção Contato / Booking -->
+    <section id="contact">
+        <div class="section-header">
+            <span class="section-subtitle">お問い合わせ</span>
+            <h2 class="section-title">Booking & Contato</h2>
+        </div>
+
+        <div class="contact-box">
+            <form onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso para a produção de Lil Thalis.');">
+                <div class="form-group">
+                    <label>Seu Nome / Empresa</label>
+                    <input type="text" placeholder="Ex: Produção de Eventos" required>
+                </div>
+                <div class="form-group">
+                    <label>E-mail de Contato</label>
+                    <input type="email" placeholder="seuemail@dominio.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Mensagem / Proposta de Show</label>
+                    <textarea rows="4" placeholder="Detalhes do evento ou imprensa..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensagem</button>
+            </form>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>Designed with Apple Minimalist Precision & Dark Cinematic Mood.</p>
-        <p style="margin-top: 10px;">&copy; 2026 <strong>LIL THALIS</strong>. Todos os direitos reservados.</p>
+        <p>&copy; 2026 LIL THALIS. Todos os direitos reservados.</p>
+        <div class="footer-jp">暗い贅沢 • リリル・サリス</div>
     </footer>
 
-    <!-- SCRIPT DE NEBLINA EM TEMPO REAL (ANIMATED FOG CANVAS) -->
+    <!-- ==========================================================================
+       JAVASCRIPT INTERATIVO & ENGINE DE PARTÍCULAS
+       ========================================================================== -->
     <script>
-        const canvas = document.getElementById('fog-canvas');
+        // Engine de Partículas Flutuantes (Atmosfera Luxo / Roxo e Ouro)
+        const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
 
-        function resize() {
+        let particles = [];
+        const particleCount = 65;
+
+        function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
-        window.addEventListener('resize', resize);
-        resize();
 
-        // Nuvens de neblina simuladas
-        const fogParticles = Array.from({ length: 25 }, () => ({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            radius: Math.random() * 300 + 150,
-            opacity: Math.random() * 0.08 + 0.02,
-            speedX: Math.random() * 0.3 + 0.05
-        }));
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-        function drawFog() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            fogParticles.forEach(p => {
-                p.x += p.speedX;
-                if (p.x - p.radius > canvas.width) p.x = -p.radius;
+        class Particle {
+            constructor() {
+                this.reset();
+            }
 
-                const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius);
-                gradient.addColorStop(0, `rgba(147, 51, 234, ${p.opacity})`);
-                gradient.addColorStop(0.5, `rgba(15, 10, 25, ${p.opacity * 0.5})`);
-                gradient.addColorStop(1, 'transparent');
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height + canvas.height;
+                this.size = Math.random() * 2.2 + 0.5;
+                this.speedY = Math.random() * 0.8 + 0.2;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.alpha = Math.random() * 0.6 + 0.2;
+                
+                // Cores alternadas: Ouro e Roxo Neon
+                const colors = ['#c5a059', '#a855f7', '#8b5cf6', '#e6ca85'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+            }
 
-                ctx.fillStyle = gradient;
+            update() {
+                this.y -= this.speedY;
+                this.x += this.speedX;
+
+                if (this.y < -10) {
+                    this.reset();
+                    this.y = canvas.height + 10;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 12;
+                ctx.shadowColor = this.color;
                 ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
-            });
-
-            requestAnimationFrame(drawFog);
+                ctx.restore();
+            }
         }
-        drawFog();
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        // Controle Simples do Player de Músicas
+        let isPlaying = true;
+        function playTrack(title) {
+            document.getElementById('current-track').innerText = title + ' - Lil Thalis';
+            isPlaying = true;
+        }
+
+        function togglePlay() {
+            isPlaying = !isPlaying;
+            const titleElem = document.getElementById('current-track');
+            if (!isPlaying) {
+                titleElem.innerText += " (Pausado)";
+            } else {
+                titleElem.innerText = titleElem.innerText.replace(" (Pausado)", "");
+            }
+        }
     </script>
 </body>
 </html>
